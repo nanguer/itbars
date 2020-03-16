@@ -1,0 +1,28 @@
+@import "../styles/settings.scss";
+@import "../styles/mixins.scss";
+
+.footer {
+  @include column;
+  justify-content: space-evenly;
+  background-color: transparent;
+  color: $light-black;
+  padding: 1rem;
+  margin-top: 2rem;
+  @media (min-width: $small-desktop) {
+    flex-direction: row;
+  }
+}
+
+.texto {
+  @include column;
+}
+
+.h4,
+.h5 {
+  font-weight: 400;
+}
+
+.button {
+  @include button-primary;
+  align-self: center;
+}

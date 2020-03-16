@@ -1,0 +1,45 @@
+@import "../styles/mixins.scss";
+@import "../styles/settings.scss";
+
+.header {
+  @include evenly;
+  position: fixed;
+  padding: 1rem 2rem 0rem;
+  background-color: $white;
+  width: 100vw;
+  left: 0;
+  top: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navNodes {
+  @include space-between;
+}
+.nav-list {
+  @include space-between;
+  list-style-type: none;
+  margin: 0;
+}
+.nav-item {
+  color: #999999;
+  font-size: 0.8rem;
+  margin-right: 1.3rem;
+  text-decoration: none;
+  &:hover {
+    color: #666666;
+  }
+}
+
+.img {
+  width: 52px;
+  height: 37px;
+  padding-top: 4px;
+}
+
+.active-nav-item {
+  color: #333333;
+}

@@ -1,0 +1,40 @@
+@import "./settings.scss";
+
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@mixin button {
+  width: 135px;
+  font-size: 0.85rem;
+}
+
+@mixin button-primary {
+  @include button;
+  color: $white;
+  background-color: $salmon;
+  border: none;
+}
+
+@mixin button-secondary {
+  @include button;
+  color: $salmon;
+  background-color: transparent;
+  border: 1px solid $salmon;
+}
