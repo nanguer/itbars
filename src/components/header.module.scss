@@ -2,13 +2,10 @@
 @import "../styles/settings.scss";
 
 .header {
-  @include evenly;
-  position: fixed;
-  padding: 1rem 2rem 0rem;
-  background-color: $white;
-  width: 100vw;
-  left: 0;
-  top: 0;
+  @include row;
+  @include alignment;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .nav {

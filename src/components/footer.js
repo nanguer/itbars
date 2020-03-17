@@ -18,10 +18,10 @@ const Footer = () => {
       }
     }
   `)
-  console.log(data)
+
   return (
     <footer className={footerStyles.footer}>
-      <div className={footerStyles.text}>
+      <div className={footerStyles.texto}>
         <h4 className={footerStyles.h4}>{data.titulo.texto}</h4>
         <h5 className={footerStyles.h5}>{data.texto.texto}</h5>
       </div>

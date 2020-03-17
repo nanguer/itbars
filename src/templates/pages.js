@@ -5,33 +5,35 @@ import { Parallax } from "react-parallax"
 import Layout from "../components/layout"
 import Head from "../components/head"
 
-const Page = props => {
-  const options = {
-    renderNode: {
-      "embedded-asset-block": node => {
-        const alt = node.data.target.fields.title["en-US"]
-        const url = node.data.target.fields.file["en-US"].url
+import pagesStyles from "./pages.module.scss"
 
-        return (
-          <Parallax
-            bgImage={url}
-            bgImageAlt="Image"
-            strength={700}
-            bgImageStyle={{ bottom: "-85%" }}
-          >
-            <div style={{ height: "406px" }} />
-          </Parallax>
-        )
-      },
-    },
-  }
+const Page = ({ pageContext }) => {
+  const { body, title, imgSrc } = pageContext
+  const url = imgSrc?.fluid.srcWebp
 
-  const { body, title } = props.pageContext
   return (
     <Layout>
       <Head title={title} />
-
-      {body ? documentToReactComponents(body, options) : null}
+      <div className={pagesStyles.container}>
+        <Parallax
+          bgImage={url}
+          bgImageAlt="Image"
+          strength={200}
+          bgImageStyle={{ zIndex: "-2" }}
+        >
+          <div className={pagesStyles.content}>
+            <div className={pagesStyles.titleDiv}>
+              <div>
+                <h1 className={pagesStyles.h1}>{title}</h1>
+              </div>
+            </div>
+          </div>
+          <div className={pagesStyles.filter}> </div>
+        </Parallax>
+        <div className={pagesStyles.body}>
+          {body ? documentToReactComponents(body) : null}
+        </div>
+      </div>
     </Layout>
   )
 }

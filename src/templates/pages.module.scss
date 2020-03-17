@@ -1,0 +1,49 @@
+@import "../styles/mixins.scss";
+@import "../styles/settings.scss";
+
+.container {
+  @include column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.filter {
+  @include column;
+  position: absolute;
+  top: 0;
+  background-color: $blue-banner;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  z-index: -1;
+}
+
+.content {
+  @include alignment;
+  height: 200px;
+  width: 100%;
+}
+
+// .h1 {
+//   color: $white;
+//   position: absolute;
+//   align-self: center;
+//   top: 40%;
+//   @media (min-width: $small-desktop) {
+//     align-self: flex-start;
+//   }
+// }
+
+.body {
+  @include column;
+  @include alignment;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleDiv {
+  position: absolute;
+  top: 40%;
+  color: white;
+}

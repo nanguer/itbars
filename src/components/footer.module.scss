@@ -3,11 +3,12 @@
 
 .footer {
   @include column;
-  justify-content: space-evenly;
+  @include alignment;
+  justify-content: space-between;
   background-color: transparent;
   color: $light-black;
-  padding: 1rem;
   margin-top: 2rem;
+  width: 100%;
   @media (min-width: $small-desktop) {
     flex-direction: row;
   }
@@ -15,11 +16,22 @@
 
 .texto {
   @include column;
+  text-align: center;
+  @media (min-width: $small-desktop) {
+    text-align: unset;
+  }
 }
 
 .h4,
 .h5 {
   font-weight: 400;
+}
+
+.h5 {
+  display: none;
+  @media (min-width: $small-desktop) {
+    display: block;
+  }
 }
 
 .button {

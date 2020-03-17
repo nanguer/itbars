@@ -38,3 +38,9 @@
   background-color: transparent;
   border: 1px solid $salmon;
 }
+
+@mixin alignment {
+  max-width: 1080px;
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+}
