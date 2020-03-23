@@ -1,0 +1,23 @@
+@import "../styles/settings.scss";
+
+.svg {
+  stroke: $blue;
+  stroke-linecap: round;
+  stroke-width: 1.5px;
+  z-index: 2;
+  path {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.pathDown {
+  opacity: 0;
+}
+
+.pathMid {
+  transform: rotate(45deg) translate(1px, -6px);
+}
+
+.pathUp {
+  transform: rotate(-45deg) translate(-4px, 7px);
+}

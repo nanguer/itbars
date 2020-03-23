@@ -6,12 +6,12 @@ import "../styles/index.scss"
 
 import layoutStyles from "./layout.module.scss"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }) => {
   return (
     <div className={layoutStyles.container}>
       <Header />
       <div className={layoutStyles.content}>{children}</div>
-      <Footer />
+      {title !== "Contacto" && <Footer />}
     </div>
   )
 }

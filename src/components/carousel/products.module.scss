@@ -1,0 +1,28 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/settings.scss";
+
+.title {
+  text-align: center;
+  color: $blue;
+}
+
+.container {
+  @include column;
+  justify-content: center;
+  overflow: hidden;
+  flex-flow: wrap;
+  @media (min-width: $small-desktop) {
+    @include row;
+  }
+}
+
+.content {
+  @include column;
+  margin: 1rem 0;
+  opacity: 1;
+  max-width: 40%;
+  img {
+    max-width: 50%;
+    align-self: center;
+  }
+}

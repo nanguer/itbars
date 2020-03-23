@@ -24,6 +24,13 @@ module.exports.createPages = async ({ graphql, actions }) => {
       allContentfulPageContent {
         edges {
           node {
+            subtitulo
+            imagen {
+              title
+              file {
+                url
+              }
+            }
             titulo
             textoPrincipal {
               json
@@ -41,7 +48,14 @@ module.exports.createPages = async ({ graphql, actions }) => {
   `)
 
   res.data.allContentfulPageContent.edges.forEach(({ node }) => {
-    const { slug, titulo, textoPrincipal, imagenDestacada } = node
+    const {
+      slug,
+      titulo,
+      textoPrincipal,
+      imagenDestacada,
+      imagen,
+      subtitulo,
+    } = node
 
     createPage({
       component: pageTemplate,
@@ -50,6 +64,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
         title: titulo,
         body: textoPrincipal.json,
         imgSrc: imagenDestacada,
+        imagen,
+        subtitulo,
       },
     })
   })
