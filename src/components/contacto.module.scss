@@ -1,0 +1,32 @@
+@import "../styles/settings.scss";
+@import "../styles/mixins.scss";
+
+.form {
+  min-width: 310px;
+}
+
+.error {
+  font-size: 0.6rem;
+  color: $red;
+}
+
+.formField {
+  margin-bottom: 0.75rem;
+  input,
+  textarea {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  textarea {
+    min-height: 100px;
+  }
+}
+
+.button {
+  @include button-primary;
+  margin-top: 0.75rem;
+}
+.span {
+  @include span;
+  display: inline-flex;
+}

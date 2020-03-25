@@ -4,6 +4,7 @@ import { Parallax } from "react-parallax"
 import Layout from "../components/layout"
 import Head from "../components/head"
 import Products from "../components/carousel/products"
+import FormikContacto from "../components/contacto"
 
 import pagesStyles from "./pages.module.scss"
 
@@ -11,8 +12,6 @@ const Page = ({ pageContext }) => {
   const { body, title, imgSrc, imagen, subtitulo } = pageContext
   const url = imgSrc?.fluid.srcWebp
   const img = imagen?.file.url
-
-  console.log(body)
 
   return (
     <Layout title={title}>
@@ -38,10 +37,19 @@ const Page = ({ pageContext }) => {
             </div>
           )}
           <div className={pagesStyles.bodyContent}>
-            {body ? documentToReactComponents(body) : null}
+            {body && title !== "Contacto"
+              ? documentToReactComponents(body)
+              : null}
             {img && <img src={img} alt={title} />}
           </div>
-
+          {title === "Contacto" && (
+            <div className={pagesStyles.contactoContainer}>
+              <div className={pagesStyles.contacto}>
+                {documentToReactComponents(body)}
+              </div>
+              <FormikContacto />
+            </div>
+          )}
           {title === "Productos" && <Products />}
         </div>
       </div>

@@ -58,3 +58,10 @@
   z-index: 1;
   transition: all 0.3s ease-in-out;
 }
+
+@mixin span {
+  height: 17px;
+  width: 4px;
+  background-color: $salmon;
+  margin-right: 0.6rem;
+}
