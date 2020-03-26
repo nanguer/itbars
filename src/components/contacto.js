@@ -72,15 +72,8 @@ const FormikContacto = withFormik({
       .required("Por favor introduzca su mensaje"),
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      if (values.email === "nahuel@wipro.com") {
-        setErrors({ email: "EL email ya existe" })
-      } else {
-        resetForm()
-      }
-      console.log(values)
-      setSubmitting(false)
-    }, 2000)
+    resetForm()
+    setSubmitting(true)
   },
 })(Contacto)
 
