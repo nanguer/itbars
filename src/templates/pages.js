@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Parallax } from "react-parallax"
+import { animate } from "../components/carousel/animations"
 import Layout from "../components/layout"
 import Head from "../components/head"
 import Products from "../components/carousel/products"
@@ -9,6 +10,11 @@ import FormikContacto from "../components/contacto"
 import pagesStyles from "./pages.module.scss"
 
 const Page = ({ pageContext }) => {
+  let parallax = useRef(null)
+  useEffect(() => {
+    animate(parallax)
+  }, [parallax])
+
   const { body, title, imgSrc, imagen, subtitulo } = pageContext
   const url = imgSrc?.fluid.srcWebp
   const img = imagen?.file.url
@@ -24,7 +30,7 @@ const Page = ({ pageContext }) => {
           bgImageStyle={{ zIndex: "-2" }}
         >
           <div className={pagesStyles.content}>
-            <div className={pagesStyles.titleDiv}>
+            <div ref={el => (parallax = el)} className={pagesStyles.titleDiv}>
               <h1 className={pagesStyles.h1}>{title}</h1>
             </div>
           </div>

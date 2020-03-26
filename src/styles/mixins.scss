@@ -23,6 +23,8 @@
 @mixin button {
   width: 135px;
   font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 @mixin button-primary {
@@ -30,6 +32,10 @@
   color: $white;
   background-color: $salmon;
   border: none;
+
+  &:hover {
+    background-color: darken($salmon, 5);
+  }
 }
 
 @mixin button-secondary {
@@ -37,6 +43,10 @@
   color: $salmon;
   background-color: transparent;
   border: 1px solid $salmon;
+  &:hover {
+    color: darken($salmon, 10);
+    border: 1px solid darken($salmon, 10);
+  }
 }
 
 @mixin alignment {

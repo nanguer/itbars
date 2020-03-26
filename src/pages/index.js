@@ -1,8 +1,10 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Layout from "../components/layout"
 import Head from "../components/head"
+import { animateScroll } from "../components/carousel/animations"
 import Caracteristica from "../templates/caracteristicas"
+import { Parallax } from "react-parallax"
 
 import indexStyles from "./index.module.scss"
 
@@ -48,15 +50,6 @@ const IndexPage = () => {
   const { texto } = data.subtituloBajo
   const { file, title } = data.contentfulAsset
 
-  const heroStyle = {
-    paddingLeft: "2rem",
-    backgroundImage: `url(${file.url})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPositionY: "center",
-    backgroundPositionX: "top",
-  }
-
   const nodes = data.allContentfulCaracteristicas.edges.map((edge, i) => {
     return <Caracteristica key={i} data={edge.node} />
   })
@@ -64,21 +57,44 @@ const IndexPage = () => {
   const nodesUp = nodes.filter((node, i) => i < 2)
   const nodesDown = nodes.filter((node, i) => i >= 2)
 
+  const handleScroll = anchor => {
+    animateScroll(anchor)
+  }
+
   return (
     <Layout>
       <Head title="Inicio" />
       <div className={indexStyles.landingFull}>
-        <div style={heroStyle} className={indexStyles.heroSection}>
-          <div className={indexStyles.mainTitle}>
-            <h1>ITBARS</h1>
-            <h4>{data.subtitulo.texto}</h4>
-            <div className={indexStyles.buttonGroup}>
-              <button className={indexStyles.buttonMas}>Mas Info</button>
-              <button className={indexStyles.buttonContacto}>Contacto</button>
+        <Parallax
+          bgImage={file.url}
+          bgImageAlt="heroImage"
+          strength={400}
+          style={{ boxShadow: "0px 4px 4px rgba(0, 0, 100,0.2)" }}
+          bgImageStyle={{ zIndex: "-2", minWidth: "1280px" }}
+        >
+          <div className={indexStyles.heroSection}>
+            <div className={indexStyles.mainTitle}>
+              <h1>ITBARS</h1>
+              <h4>{data.subtitulo.texto}</h4>
+              <div className={indexStyles.buttonGroup}>
+                <button
+                  className={indexStyles.buttonMas}
+                  onClick={() => handleScroll("#downSection")}
+                >
+                  Mas Info
+                </button>
+
+                <Link to="/contacto">
+                  <button className={indexStyles.buttonContacto}>
+                    Contacto
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={indexStyles.downSection}>
+        </Parallax>
+
+        <div className={indexStyles.downSection} id="downSection">
           <h2 className={indexStyles.subtituloBajo}>{texto}</h2>
         </div>
         <div className={indexStyles.containerCaract}>
