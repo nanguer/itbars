@@ -72,9 +72,21 @@ const FormikContacto = withFormik({
       .required("Por favor introduzca su mensaje"),
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    fetch("/?no-cache=1", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "driversubmit", values }),
+    })
     resetForm()
-    setSubmitting(true)
+    setSubmitting(false)
   },
+  displayName: "MyForm",
 })(Contacto)
+
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
 
 export default FormikContacto
