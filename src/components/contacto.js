@@ -17,7 +17,12 @@ const Contacto = ({ values, errors, touched, isSubmitting }) => {
         <span className={ContactoStyles.span}></span>Escribenos un mensaje
       </h4>
 
-      <Form name="contactForm" className={ContactoStyles.form}>
+      <Form
+        name="contactForm"
+        className={ContactoStyles.form}
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
         <div className={ContactoStyles.formField}>
           <Field type="text" name="name" placeholder="Nombre" />
           <ErrorMessage component={Error} name="name" />
