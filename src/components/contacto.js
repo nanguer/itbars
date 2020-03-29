@@ -17,9 +17,7 @@ const Contacto = ({ values, errors, touched, isSubmitting }) => {
         <span className={ContactoStyles.span}></span>Escribenos un mensaje
       </h4>
 
-      <Form name="contact-form" className={ContactoStyles.form} method="post">
-        <input type="hidden" name="bot-field" />
-
+      <Form name="contactForm" className={ContactoStyles.form}>
         <div className={ContactoStyles.formField}>
           <Field type="text" name="name" placeholder="Nombre" />
           <ErrorMessage component={Error} name="name" />
@@ -43,6 +41,12 @@ const Contacto = ({ values, errors, touched, isSubmitting }) => {
       </Form>
     </div>
   )
+}
+
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
 }
 
 const FormikContacto = withFormik({
@@ -69,8 +73,19 @@ const FormikContacto = withFormik({
       .required("Por favor introduzca su mensaje"),
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    resetForm()
-    setSubmitting(false)
+    const encodedBody = encode({ "form-name": "contactForm", values })
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodedBody,
+    })
+      .then(() => {
+        resetForm()
+        setSubmitting(false)
+        console.log(encodedBody)
+      })
+      .catch(error => console.log(error))
   },
 })(Contacto)
 
