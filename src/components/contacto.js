@@ -78,7 +78,7 @@ const FormikContacto = withFormik({
       .required("Por favor introduzca su mensaje"),
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    const encodedBody = encode({ "form-name": "contactForm", values })
+    const encodedBody = encode(values)
 
     fetch("/", {
       method: "POST",
@@ -88,7 +88,6 @@ const FormikContacto = withFormik({
       .then(() => {
         resetForm()
         setSubmitting(false)
-        console.log(encodedBody)
       })
       .catch(error => console.log(error))
   },
