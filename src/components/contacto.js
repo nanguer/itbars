@@ -16,13 +16,22 @@ const Contacto = ({ values, errors, touched, isSubmitting }) => {
       <h4>
         <span className={ContactoStyles.span}></span>Escribenos un mensaje
       </h4>
+
       <Form
+        name="contact-form"
         className={ContactoStyles.form}
+        method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
         <input type="hidden" name="bot-field" />
-        <input type="hidden" name="form-name" value="contact" />
+        <input
+          type="hidden"
+          name="contact-form"
+          value="contact"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+        />
         <div className={ContactoStyles.formField}>
           <Field type="text" name="name" placeholder="Nombre" />
           <ErrorMessage component={Error} name="name" />
@@ -72,21 +81,9 @@ const FormikContacto = withFormik({
       .required("Por favor introduzca su mensaje"),
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    fetch("/?no-cache=1", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "driversubmit", values }),
-    })
     resetForm()
     setSubmitting(false)
   },
-  displayName: "MyForm",
 })(Contacto)
-
-const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
-}
 
 export default FormikContacto
