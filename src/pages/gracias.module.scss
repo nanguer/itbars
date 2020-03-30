@@ -1,0 +1,11 @@
+@import "../styles/mixins.scss";
+@import "../styles/settings.scss";
+
+.container {
+  @include alignment;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+}

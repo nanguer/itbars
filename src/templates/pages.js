@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Parallax } from "react-parallax"
 import { animate } from "../components/carousel/animations"
-import Layout from "../components/layout"
 import Head from "../components/head"
 import Products from "../components/carousel/products"
 import FormikContacto from "../components/contacto"
@@ -20,7 +19,7 @@ const Page = ({ pageContext }) => {
   const img = imagen?.file.url
 
   return (
-    <Layout title={title}>
+    <>
       <Head title={title} />
       <div className={pagesStyles.container}>
         <Parallax
@@ -59,7 +58,7 @@ const Page = ({ pageContext }) => {
           {title === "Productos" && <Products />}
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

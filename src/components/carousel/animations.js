@@ -1,5 +1,6 @@
 import gsap from "gsap"
 import ScrollToPlugin from "gsap/ScrollToPlugin"
+
 gsap.registerPlugin(ScrollToPlugin)
 
 export const firstPart = (tar1, tar2, tar3, tar4) => {
@@ -77,6 +78,20 @@ export const animate = target => {
     ease: "power3.in",
     opacity: 0,
     delay: 0.5,
+  })
+}
+
+export const fadeExit = target => {
+  gsap.to(target, {
+    duration: 0.5,
+    opacity: 0,
+  })
+}
+
+export const fadeIn = target => {
+  gsap.from(target, {
+    duration: 0.5,
+    opacity: 0,
   })
 }
 

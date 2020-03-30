@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
-import Layout from "../components/layout"
 import Head from "../components/head"
 import { animateScroll } from "../components/carousel/animations"
 import Caracteristica from "../templates/caracteristicas"
@@ -48,7 +47,7 @@ const IndexPage = () => {
     `
   )
   const { texto } = data.subtituloBajo
-  const { file, title } = data.contentfulAsset
+  const { file } = data.contentfulAsset
 
   const nodes = data.allContentfulCaracteristicas.edges.map((edge, i) => {
     return <Caracteristica key={i} data={edge.node} />
@@ -62,7 +61,7 @@ const IndexPage = () => {
   }
 
   return (
-    <Layout>
+    <>
       <Head title="Inicio" />
       <div className={indexStyles.landingFull}>
         <Parallax
@@ -105,7 +104,7 @@ const IndexPage = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 export default IndexPage

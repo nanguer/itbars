@@ -1,5 +1,7 @@
 import React, { useState } from "react"
-import { graphql, useStaticQuery, Link, navigate } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
+import TransitionLink from "gatsby-plugin-transition-link"
+import { fadeExit, fadeIn } from "../components/carousel/animations"
 import Logo from "./logo"
 import { Hamburguer } from "./hamburguer"
 import headerStyles from "./header.module.scss"
@@ -42,13 +44,21 @@ const Header = () => {
   const navNodes = data.allContentfulPageContent.edges.map(({ node }) => {
     return (
       <div key={node.slug}>
-        <Link
+        <TransitionLink
           className={headerStyles.navItem}
           activeClassName={headerStyles.activeNavItem}
           to={`/${node.slug}`}
+          exit={{
+            length: 0.6,
+            trigger: ({ node }) => fadeExit(node),
+          }}
+          entry={{
+            delay: 0.6,
+            trigger: ({ node }) => fadeIn(node),
+          }}
         >
           {node.titulo}
-        </Link>
+        </TransitionLink>
       </div>
     )
   })
@@ -69,13 +79,22 @@ const Header = () => {
       <nav className={headerStyles.nav}>
         <div className={headerStyles.navList}>{navNodes}</div>
       </nav>
-      <div className={headerStyles.hambMenu} onClick={handleClick}>
+      <div
+        tabIndex={0}
+        onKeyDown={() => handleClick}
+        role="button"
+        className={headerStyles.hambMenu}
+        onClick={() => handleClick}
+      >
         <Hamburguer open={menuIsOpen} />
         <div
+          tabIndex={0}
+          onKeyDown={() => handleClick}
+          role="button"
           className={
             menuIsOpen ? headerStyles.hambMenuItems : headerStyles.hambMenuClick
           }
-          onClick={handleClick}
+          onClick={() => handleClick}
         >
           {navNodes}
         </div>

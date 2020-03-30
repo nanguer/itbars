@@ -1,4 +1,5 @@
 import React from "react"
+import { navigate } from "gatsby"
 import { withFormik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 
@@ -88,7 +89,7 @@ const FormikContacto = withFormik({
       .then(() => {
         resetForm()
         setSubmitting(false)
-        console.log(encodedBody)
+        navigate("/gracias")
       })
       .catch(error => console.log(error))
   },
