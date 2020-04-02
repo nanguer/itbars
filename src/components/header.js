@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
-import { fadeExit, fadeIn } from "../components/carousel/animations"
+import { fadeTo, fadeIn } from "../components/carousel/animations"
 import Logo from "./logo"
 import { Hamburguer } from "./hamburguer"
 import headerStyles from "./header.module.scss"
@@ -50,11 +50,11 @@ const Header = () => {
           to={`/${node.slug}`}
           exit={{
             length: 0.6,
-            trigger: ({ node }) => fadeExit(node),
+            trigger: ({ node }) => fadeTo(node, 0.5, 0),
           }}
           entry={{
             delay: 0.6,
-            trigger: ({ node }) => fadeIn(node),
+            trigger: ({ node }) => fadeIn(node, 0.5),
           }}
         >
           {node.titulo}
@@ -64,17 +64,26 @@ const Header = () => {
   })
 
   const handleClick = e => {
+    console.log("click")
     setMenuIsOpen(!menuIsOpen)
   }
   return (
     <header className={headerStyles.header}>
-      <Link
+      <TransitionLink
         className={headerStyles.title}
         activeClassName={headerStyles.activeNavItem}
         to="/"
+        exit={{
+          length: 0.6,
+          trigger: ({ node }) => fadeTo(node, 0.5, 0),
+        }}
+        entry={{
+          delay: 0.6,
+          trigger: ({ node }) => fadeIn(node, 0.5),
+        }}
       >
         <Logo />
-      </Link>
+      </TransitionLink>
 
       <nav className={headerStyles.nav}>
         <div className={headerStyles.navList}>{navNodes}</div>
@@ -84,7 +93,7 @@ const Header = () => {
         onKeyDown={() => handleClick}
         role="button"
         className={headerStyles.hambMenu}
-        onClick={() => handleClick}
+        onClick={handleClick}
       >
         <Hamburguer open={menuIsOpen} />
         <div
@@ -94,7 +103,7 @@ const Header = () => {
           className={
             menuIsOpen ? headerStyles.hambMenuItems : headerStyles.hambMenuClick
           }
-          onClick={() => handleClick}
+          onClick={handleClick}
         >
           {navNodes}
         </div>

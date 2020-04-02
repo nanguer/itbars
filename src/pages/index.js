@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Head from "../components/head"
-import { animateScroll } from "../components/carousel/animations"
+import { animateScroll, animateTitle } from "../components/carousel/animations"
 import Caracteristica from "../templates/caracteristicas"
 import { Parallax } from "react-parallax"
 
@@ -46,6 +46,20 @@ const IndexPage = () => {
       }
     `
   )
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  let title = useRef(null)
+
+  useEffect(() => {
+    animateTitle([title])
+  }, [isLoading])
+
+  const handleParallaxLoad = () => {
+    console.log("parallax loaded")
+    setIsLoading(true)
+  }
+
   const { texto } = data.subtituloBajo
   const { file } = data.contentfulAsset
 
@@ -65,6 +79,7 @@ const IndexPage = () => {
       <Head title="Inicio" />
       <div className={indexStyles.landingFull}>
         <Parallax
+          onLoad={handleParallaxLoad}
           bgImage={file.url}
           bgImageAlt="heroImage"
           strength={400}
@@ -72,7 +87,7 @@ const IndexPage = () => {
           bgImageStyle={{ zIndex: "-2", minWidth: "1280px" }}
         >
           <div className={indexStyles.heroSection}>
-            <div className={indexStyles.mainTitle}>
+            <div ref={el => (title = el)} className={indexStyles.mainTitle}>
               <h1>ITBARS</h1>
               <h4>{data.subtitulo.texto}</h4>
               <div className={indexStyles.buttonGroup}>
@@ -92,8 +107,8 @@ const IndexPage = () => {
             </div>
           </div>
         </Parallax>
-
-        <div className={indexStyles.downSection} id="downSection">
+        <div id="downSection"></div>
+        <div className={indexStyles.downSection}>
           <h2 className={indexStyles.subtituloBajo}>{texto}</h2>
         </div>
         <div className={indexStyles.containerCaract}>

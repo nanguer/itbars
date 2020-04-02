@@ -68,6 +68,7 @@
   h1,
   h4 {
     font-weight: 400;
+    visibility: hidden;
   }
 }
 
@@ -85,9 +86,11 @@
 
 .buttonMas {
   @include button-primary;
+  visibility: hidden;
 }
 
 .buttonContacto {
   @include button-secondary;
   margin-left: 1rem;
+  visibility: hidden;
 }

@@ -3,66 +3,6 @@ import ScrollToPlugin from "gsap/ScrollToPlugin"
 
 gsap.registerPlugin(ScrollToPlugin)
 
-export const firstPart = (tar1, tar2, tar3, tar4) => {
-  const tl = animateProducts(tar1, tar2, tar3, tar4)
-  return tl
-}
-
-export const secondPart = (tar1, tar2, tar3, tar4) => {
-  const tl = animateProducts(tar1, tar2, tar3, tar4)
-  return tl
-}
-
-export const animateProducts = (tar1, tar2, tar3, tar4) => {
-  const tlProducts = gsap.timeline()
-  tlProducts.from(
-    tar1,
-    {
-      opacity: 0,
-      x: "-100px",
-      duration: 0.5,
-    },
-    1
-  )
-  tlProducts.from(
-    tar2,
-    {
-      opacity: 0,
-      x: "-50px",
-      duration: 1,
-    },
-    2
-  )
-  tlProducts.from(
-    tar3,
-    {
-      opacity: 0,
-      x: "100px",
-      duration: 0.5,
-    },
-    3
-  )
-  tlProducts.from(
-    tar4,
-    {
-      opacity: 0,
-      x: "50px",
-      duration: 1,
-    },
-    4
-  )
-  tlProducts.to(
-    [tar1, tar2, tar3, tar4],
-    {
-      opacity: 0,
-      stagger: { each: 0.2, from: "random" },
-    },
-    6
-  )
-
-  return tlProducts
-}
-
 export const animateScroll = anchor => {
   gsap.to(window, {
     duration: 1,
@@ -81,18 +21,40 @@ export const animate = target => {
   })
 }
 
-export const fadeExit = target => {
+export const fadeTo = (target, opacity, delay) => {
   gsap.to(target, {
     duration: 0.5,
-    opacity: 0,
+    opacity,
+    delay: delay || 0,
   })
 }
 
-export const fadeIn = target => {
+export const fadeIn = (target, duration) => {
   gsap.from(target, {
-    duration: 0.5,
+    duration: duration,
     opacity: 0,
+    delay: 0.5,
   })
 }
 
-export const master = gsap.timeline({ repeat: -1 })
+export const animateTitle = target => {
+  const title = target[0].firstElementChild
+  const subtitle = target[0].children[1]
+  const button1 = target[0].children[2].firstElementChild
+  const button2 = target[0].children[2].children[1].firstElementChild
+
+  gsap.from([title, subtitle, button1, button2], {
+    autoAlpha: 0,
+    y: 50,
+    stagger: {
+      ease: "power3.inOut",
+      amount: 0.7,
+    },
+    duration: 0.3,
+    delay: 0.6,
+  })
+}
+
+// window.addEventListener("load", () => {
+//   animateTitle()
+// })

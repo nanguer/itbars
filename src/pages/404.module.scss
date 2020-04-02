@@ -1,0 +1,9 @@
+@import "../styles/mixins.scss";
+
+.container {
+  @include alignment;
+  @include column;
+  min-height: 37vh;
+  align-items: center;
+  justify-content: center;
+}
