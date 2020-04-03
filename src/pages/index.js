@@ -1,7 +1,13 @@
 import React, { useRef, useState, useEffect } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
+import TransitionLink from "gatsby-plugin-transition-link"
 import Head from "../components/head"
-import { animateScroll, animateTitle } from "../components/carousel/animations"
+import {
+  animateScroll,
+  animateTitle,
+  fadeTo,
+  fadeIn,
+} from "../components/carousel/animations"
 import Caracteristica from "../templates/caracteristicas"
 import { Parallax } from "react-parallax"
 
@@ -98,11 +104,21 @@ const IndexPage = () => {
                   Mas Info
                 </button>
 
-                <Link to="/contacto">
+                <TransitionLink
+                  to="/contacto"
+                  exit={{
+                    length: 0.6,
+                    trigger: ({ node }) => fadeTo(node, 0, 0.5),
+                  }}
+                  entry={{
+                    delay: 0.6,
+                    trigger: ({ node }) => fadeIn(node, 0.5),
+                  }}
+                >
                   <button className={indexStyles.buttonContacto}>
                     Contacto
                   </button>
-                </Link>
+                </TransitionLink>
               </div>
             </div>
           </div>

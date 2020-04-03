@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import { fadeTo, fadeIn } from "./carousel/animations"
 import TransitionLink from "gatsby-plugin-transition-link"
 
@@ -37,7 +37,7 @@ const Footer = () => {
         to="/contacto"
         exit={{
           length: 0.6,
-          trigger: ({ node }) => fadeTo(node, 0.5, 0),
+          trigger: ({ node }) => fadeTo(node, 0, 0.5),
         }}
         entry={{
           delay: 0.6,

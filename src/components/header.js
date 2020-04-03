@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { fadeTo, fadeIn } from "../components/carousel/animations"
 import Logo from "./logo"
@@ -50,7 +50,7 @@ const Header = () => {
           to={`/${node.slug}`}
           exit={{
             length: 0.6,
-            trigger: ({ node }) => fadeTo(node, 0.5, 0),
+            trigger: ({ node }) => fadeTo(node, 0, 0.5),
           }}
           entry={{
             delay: 0.6,
@@ -64,7 +64,6 @@ const Header = () => {
   })
 
   const handleClick = e => {
-    console.log("click")
     setMenuIsOpen(!menuIsOpen)
   }
   return (
@@ -75,7 +74,7 @@ const Header = () => {
         to="/"
         exit={{
           length: 0.6,
-          trigger: ({ node }) => fadeTo(node, 0.5, 0),
+          trigger: ({ node }) => fadeTo(node, 0, 0.5),
         }}
         entry={{
           delay: 0.6,
