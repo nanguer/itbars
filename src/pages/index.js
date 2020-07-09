@@ -62,7 +62,6 @@ const IndexPage = () => {
   }, [isLoading])
 
   const handleParallaxLoad = () => {
-    console.log("parallax loaded")
     setIsLoading(true)
   }
 
@@ -76,7 +75,7 @@ const IndexPage = () => {
   const nodesUp = nodes.filter((node, i) => i < 2)
   const nodesDown = nodes.filter((node, i) => i >= 2)
 
-  const handleScroll = anchor => {
+  const handleScroll = (anchor) => {
     animateScroll(anchor)
   }
 
@@ -93,7 +92,7 @@ const IndexPage = () => {
           bgImageStyle={{ zIndex: "-2", minWidth: "1280px" }}
         >
           <div className={indexStyles.heroSection}>
-            <div ref={el => (title = el)} className={indexStyles.mainTitle}>
+            <div ref={(el) => (title = el)} className={indexStyles.mainTitle}>
               <h1>ITBARS</h1>
               <h4>{data.subtitulo.texto}</h4>
               <div className={indexStyles.buttonGroup}>
